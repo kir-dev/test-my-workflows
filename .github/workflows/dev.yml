@@ -1,0 +1,15 @@
+name: Development workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  docker-publish:
+    uses: kir-dev/workflows/.github/workflows/docker-publish.yml@main
+    with: {}
+
