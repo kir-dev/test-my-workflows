@@ -15,10 +15,11 @@ jobs:
     steps:
       - name: Calculate tag
         id: tag
-        run: if [ -z "${{ inputs.tag }}" ]; then
-          echo "::set-output name=tag::v$(date +'%Y-%m-%d')"
+        run: |
+          if [ -z "${{ inputs.tag }}" ]; then
+            echo "::set-output name=tag::v$(date +'%Y-%m-%d')"
           else
-          echo "::set-output name=tag::v${{ inputs.tag }}"
+            echo "::set-output name=tag::v${{ inputs.tag }}"
           fi
       - name: Checkout code
         uses: actions/checkout@v4

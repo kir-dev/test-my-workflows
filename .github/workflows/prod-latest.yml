@@ -1,4 +1,4 @@
-name: Production workflow for tags
+name: Production workflow for latest
 
 on:
   push:
