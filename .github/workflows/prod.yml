@@ -11,7 +11,9 @@ on:
 jobs:
   publish-prod:
 
-    uses: kir-dev/workflows/.github/workflows/docker-publish.yml@feat/git-ref
-    with:
-      ref: production
-      docker-tag-config: type=raw,value=latest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Hello world action
+        run: echo "Hello world"
