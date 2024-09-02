@@ -1,0 +1,30 @@
+name: Create a new release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to publish. Usually starts with "v"'
+        type: string
+        default: ""
+        required: false
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calculate tag
+        id: tag
+        run: if [ -z "${{ inputs.tag }}" ]; then
+          echo "::set-output name=tag::v$(date +'%Y-%m-%d')"
+          else
+          echo "::set-output name=tag::v${{ inputs.tag }}"
+          fi
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Create and push tag
+        run: |
+          git tag -a ${{ steps.tag.outputs.tag }} -m "Release ${{ steps.tag.outputs.tag }}"
+          git push origin ${{ steps.tag.outputs.tag }}
+          git tag latest -f ${{ steps.tag.outputs.tag }}
+          git push origin latest --force
