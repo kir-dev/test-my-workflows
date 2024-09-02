@@ -19,5 +19,7 @@ jobs:
           run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M:%S')"
         - name: Push to the production tag
           run: |
+            git config --local user.email "action@noreply.github.com"
+            git config --local user.name "GitHub Action"
             git tag -a production -m "Release ${{ steps.date.outputs.date }}"
             git push origin production
