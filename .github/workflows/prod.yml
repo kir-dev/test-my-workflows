@@ -4,9 +4,6 @@ on:
   push:
     tags: 
       - production
-  workflow_dispatch:
-  schedule:
-    - cron: '*/15 * * * *'
 
 jobs:
   publish-prod:
@@ -15,5 +12,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Hello world action
         run: echo "Hello world"
+      - name: print current git tag
+        run: git describe
