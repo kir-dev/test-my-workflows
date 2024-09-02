@@ -25,6 +25,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Create and push tag
         run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git tag -a ${{ steps.tag.outputs.tag }} -m "Release ${{ steps.tag.outputs.tag }}"
           git push origin ${{ steps.tag.outputs.tag }}
           git tag latest -f ${{ steps.tag.outputs.tag }}
