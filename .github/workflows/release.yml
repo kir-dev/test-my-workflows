@@ -1,4 +1,4 @@
-name: Create a release
+name: Release workflow
 
 on:
   push:
@@ -22,4 +22,4 @@ jobs:
             git config --local user.email "action@noreply.github.com"
             git config --local user.name "GitHub Action"
             git tag -a production -m "Release ${{ steps.date.outputs.date }}"
-            git push origin production
+            git push --force origin production
