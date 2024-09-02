@@ -1,11 +1,14 @@
 name: Production workflow
 
 on:
-  push:
-    tags:
-      - production
-    branches:
+  workflow_run: 
+    workflows: ["Release workflow"]
+    types:
+      - completed
+    branches: 
       - main
+  schedule:
+    - cron: '*/15 * * * *'
 
 jobs:
   publish-prod:
