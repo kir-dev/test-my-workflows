@@ -1,14 +1,17 @@
-name: Production workflow for latest
+name: Production workflow
 
 on:
   push:
-    tags:
-      - 'latest'
+    tags: 
+      - production
+  workflow_dispatch:
   schedule:
-    - cron: '0 4 * * 0'
+    - cron: '*/5 * * * *'
 
 jobs:
-  docker-publish:
+  publish-prod:
+
     uses: kir-dev/workflows/.github/workflows/docker-publish.yml@feat/git-ref
     with:
+      ref: production
       docker-tag-config: type=raw,value=latest

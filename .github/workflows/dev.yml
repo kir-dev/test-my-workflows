@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  docker-publish:
+  publish-dev:
     uses: kir-dev/workflows/.github/workflows/docker-publish.yml@main
     with: {}
 
