@@ -13,13 +13,6 @@ on:
 jobs:
   publish-prod:
 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Hello world action
-        run: echo "Hello world"
-      - name: print current git tag
-        run: git describe
+    uses: kir-dev/workflows/.github/workflows/docker-publish.yml@main
+    with:
+      docker-tag-config: type=raw,value=latest
