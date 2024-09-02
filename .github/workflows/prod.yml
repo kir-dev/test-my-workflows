@@ -2,7 +2,8 @@ name: Production workflow
 
 on:
   workflow_run: 
-    workflows: ["Release workflow"]
+    workflows:
+      - "Release workflow"
     types:
       - completed
     branches: 
@@ -13,6 +14,21 @@ on:
 jobs:
   publish-prod:
 
-    uses: kir-dev/workflows/.github/workflows/docker-publish.yml@main
-    with:
-      docker-tag-config: type=raw,value=latest
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout the production tag
+        uses: actions/checkout@v4
+        with:
+          ref: refs/tags/production
+          fetch-tags: true
+      
+      - name: Deploy to production
+        run: |
+          echo "Deploying to production"
+          git describe
+          git checkout refs/tags/production
+          git describe
+          docker build -t ghcr.io/${{ github.repository }}:latest .
+          docker push ghcr.io/${{ github.repository }}:latest
+          echo "Done"
