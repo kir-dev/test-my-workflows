@@ -2,8 +2,10 @@ name: Production workflow
 
 on:
   push:
-    tags: 
+    tags:
       - production
+    branches:
+      - main
 
 jobs:
   publish-prod:
