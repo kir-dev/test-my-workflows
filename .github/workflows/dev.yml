@@ -12,4 +12,8 @@ jobs:
   publish-dev:
     uses: kir-dev/workflows/.github/workflows/docker-publish.yml@main
     with: {}
-
+  count-lines:
+    uses: tomitheninja/automations/.github/workflows/count-lines.yml@feat/count-lines
+    with:
+      target_directory: .
+      ignore_rule: .
