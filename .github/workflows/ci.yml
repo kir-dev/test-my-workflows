@@ -1,0 +1,23 @@
+name: NestJS CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              name: Use Node.js
+            
+            - uses: kir-dev/automations/actions/node-ci@node-ci
+              with:
+                node-version: 20
+                package-manager: npm
+                build-artifacts: dist
+            
