@@ -14,12 +14,13 @@ jobs:
     with:
       node-version: 20
       package-manager: npm
+      skip-test: false
       test-script: test:cov
       build-artifacts-path: dist
       test-coverage-path: coverage
 
     # check:
-      
+
     #     runs-on: ubuntu-latest
 
     #     steps:
