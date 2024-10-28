@@ -9,19 +9,28 @@ on:
       - main
 
 jobs:
-    check:
-        runs-on: ubuntu-latest
+  ci:
+    uses: kir-dev/automations/.github/workflows/node-ci.yml@node-ci
+    with:
+      node-version: 20
+      package-manager: npm
+      test-script: test:cov
+      build-artifacts-path: dist
+      test-coverage-path: coverage
 
-        steps:
-            - uses: actions/checkout@v4
-              name: Use Node.js
+    # check:
+    #     runs-on: ubuntu-latest
+
+    #     steps:
+    #         - uses: actions/checkout@v4
+    #           name: Use Node.js
             
-            - uses: kir-dev/automations/actions/node-ci@node-ci
-              with:
-                node-version: 20
-                package-manager: npm
-                test-script: test:cov
-                build-artifacts-path: dist
-                test-coverage-path: coverage
+    #         - uses: kir-dev/automations/actions/node-ci@node-ci
+    #           with:
+    #             node-version: 20
+    #             package-manager: npm
+    #             test-script: test:cov
+    #             build-artifacts-path: dist
+    #             test-coverage-path: coverage
                 
             
