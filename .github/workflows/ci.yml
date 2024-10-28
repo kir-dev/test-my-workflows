@@ -19,5 +19,8 @@ jobs:
               with:
                 node-version: 20
                 package-manager: npm
-                build-artifacts: dist
+                test-script: test:cov
+                build-artifacts-path: dist
+                test-coverage-path: coverage
+                
             
