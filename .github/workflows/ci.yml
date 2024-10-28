@@ -11,10 +11,7 @@ on:
 jobs:
     check:
         runs-on: ubuntu-latest
-        permissions:
-          contents: read
-          issues: write
-          pull-requests: write
+
         steps:
             - uses: actions/checkout@v4
               name: Use Node.js
@@ -24,7 +21,6 @@ jobs:
                 node-version: 20
                 package-manager: npm
                 test-script: test:cov
-                gh-comment-token: ${{ secrets.GITHUB_TOKEN }}
                 build-artifacts-path: dist
                 test-coverage-path: coverage
                 
